@@ -1,4 +1,4 @@
-# SFcityMeter
+# SF City Meters
 
 This project will create meters using data from 
 https://data.sfgov.org/
