@@ -1,0 +1,28 @@
+<html>
+<head>
+</head>
+<body>
+<div id="JSONresults">JSON here</div>
+</body>
+
+<script>
+
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+     document.getElementById("JSONresults").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "https://data.sfgov.org/resource/vw6y-z8j6.json", true);
+  xhttp.send();
+}
+
+//https://data.sfgov.org/resource/vw6y-z8j6.json
+
+loadDoc();
+
+</script>
+
+
+</html>
