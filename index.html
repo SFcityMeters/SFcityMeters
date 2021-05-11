@@ -7,14 +7,14 @@
 
 <script>
 
-function loadDoc() {
+function sf311() {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
      document.getElementById("JSONresults").innerHTML = this.responseText;
     }
   };
-  xhttp.open("GET", "https://data.sfgov.org/resource/vw6y-z8j6.json", true);
+  xhttp.open("GET", "https://data.sfgov.org/resource/vw6y-z8j6.json?$where=requested_datetime between '2021-05-09T00:00:00.000' and '2021-05-09T23:59:59.000'", true);
   xhttp.send();
 }
 
@@ -22,7 +22,7 @@ function loadDoc() {
 //This is the API link to use
 //https://data.sfgov.org/resource/vw6y-z8j6.json
 
-loadDoc();
+sf311();
 
 </script>
 
