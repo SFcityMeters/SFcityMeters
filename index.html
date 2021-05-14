@@ -1,33 +1,49 @@
 <html>
-<head>
-</head>
-<body>
-<div id="JSONresults">JSON here</div>
-</body>
+  <head> </head>
+  <body>
+    <div id="JSONresults">JSON here</div>
+  </body>
 
-<script>
+  <script>
+    function sf311() {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          const serviceRequests = JSON.parse(this.responseText);
 
-function sf311() {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-     document.getElementById("JSONresults").innerHTML = this.responseText;
+          let serviceRequestHTML = "";
+          for (const serviceRequest of serviceRequests) {
+            let serviceRequestItemHTML = "";
+            for (const key in serviceRequest) {
+              if (key !== "service_request_id") {
+                serviceRequestItemHTML += `<li>${key}: ${JSON.stringify(
+                  serviceRequest[key]
+                )}</li>`;
+              }
+            }
+
+            serviceRequestHTML += `
+        <span>service_request_id: ${serviceRequest["service_request_id"]}</span>
+        <ul>
+          ${serviceRequestItemHTML}
+        </ul>
+      `;
+          }
+
+          document.getElementById("JSONresults").innerHTML = serviceRequestHTML;
+        }
+      };
+      xhttp.open(
+        "GET",
+        "https://data.sfgov.org/resource/vw6y-z8j6.json?$where=requested_datetime between '2021-05-09T00:00:00.000' and '2021-05-09T23:59:59.000'",
+        true
+      );
+      xhttp.send();
     }
-  };
-  xhttp.open("GET", "https://data.sfgov.org/resource/vw6y-z8j6.json?$where=requested_datetime between '2021-05-09T00:00:00.000' and '2021-05-09T23:59:59.000'", true);
-  xhttp.send();
-}
 
+    //This is the API link to use
+    //https://data.sfgov.org/resource/vw6y-z8j6.json
 
-//This is the API link to use
-//https://data.sfgov.org/resource/vw6y-z8j6.json
-
-sf311();
-
-</script>
-
-
-
+    sf311();
+  </script>
 </html>
-
-
