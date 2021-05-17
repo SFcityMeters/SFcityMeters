@@ -11,7 +11,7 @@ Open source code tends to be restricted to people who know how to code.
 SF City Meters will accept ideas or suggestions from anyone. Issues can be sent to <a href="https://rysolv.com" title="Rysolv.com Fund Open Source Issues">Rysolv.com</a> where they can be crowdfunded and built.
 
 ## How do I contribute? 
-### To suggestion ideas?
+### To suggest ideas:
 Just click the pen symbol to edit this page and submit an idea. You can add your ideas to the list below.
 ### To add to the code: 
 Right now the project is all html and vanilla JS. Check the "Issues" tab for items which need to be built, or browse our issues on <a href="https://rysolv.com/repos/detail/7f5537b7-fe09-4491-856e-000df7189484">Rysolv</a>
