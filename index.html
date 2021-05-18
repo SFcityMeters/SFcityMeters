@@ -1,13 +1,48 @@
-<html>
+<!doctype html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>San Francicsco City Data</title>
+  <link rel="canonical" href="https://sfcitymeters.github.io/SFcityMeters/"/>
+  <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,maximum-scale=2.0,user-scalable=2">
+  <meta name="description" content="Get insights through data generated from San Francisco."/>
+  <meta name="keywords" content="San Francisco,data,311"/>
+  <meta name="language" content="english"/>
+  <meta property="og:url" content="https://sfcitymeters.github.io/SFcityMeters/"/>
+  <meta property="og:title" content="San Francisco Data Insights" />
+  <meta property="og:description" content="Get insights through data generated from San Francisco." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="SF City Meters" />
 
- <head> </head>
+  <!-- To Add -->
+  <!-- <meta property="og:image" content="./images/index.jpg"> -->
+  <!-- <link rel="shortcut icon" type="image/ico" href="/favicon.png" /> -->
 
-  <body>
+<style>
+/*CSS to go here*/
+
+</style>
+
+</head>
+
+
+<body>
+  <h1>Raw Data from the SF 311 API</h1>
     <div id="JSONresults">JSON here</div>
-  </body>
+</body>
 
   <script>
+ 
+ //Function for the main SF 311 Data API Request
     function sf311() {
+
+      var currentTime = new Date(Date.now());
+      var twoWeeksAgo = new Date(Date.now() - 12096e5);
+
+      var currentTimeSQL=currentTime.toISOString().slice(0, 19);
+      var twoWeeksAgoSQL=twoWeeksAgo.toISOString().slice(0, 19);
+
+      console.log("times",currentTimeSQL,"--",twoWeeksAgoSQL);
+
       var xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
@@ -37,7 +72,7 @@
       };
       xhttp.open(
         "GET",
-        "https://data.sfgov.org/resource/vw6y-z8j6.json?$where=requested_datetime between '2021-05-09T00:00:00.000' and '2021-05-09T23:59:59.000'",
+        "https://data.sfgov.org/resource/vw6y-z8j6.json?$where=requested_datetime between '"+twoWeeksAgoSQL+"' and '"+currentTimeSQL+"'",
         true
       );
       xhttp.send();
